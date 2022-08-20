@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            form {
+              font-family: Helvetica, sans-serif;
+            }
+        </style>
+
+        <title>Translate English to German</title>
+    </head>
+
+    <form action='#' method='post'>
+        <p style="font-weight: bold;font-size: 0.9em">Input (German):</p>
+
+        <p> <textarea style="width: 75%" name='text' rows='10'></textarea> </p>
+
+        <p><input type='submit' name='submit' value='Submit' /></p>
+
+        {% if input %}
+            <p style="font-style: italic;font-size: 0.9em">Input:</p>
+            <p> {{ input }} </p>
+            <p style="font-style: italic;font-size: 0.9em">Translation:</p>
+            <p> {{ translation }} </p>
+        {% endif %}
+    </form>
+
+    <p align="center"><a href="{{ url_for('query_db') }}"><button class=grey>Query previous translations</button></a></p>
+
+</html>

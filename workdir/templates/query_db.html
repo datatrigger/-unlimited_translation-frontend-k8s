@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            form {
+              font-family: Helvetica, sans-serif;
+            }
+        </style>
+
+        <title>Query previous translations</title>
+    </head>
+
+    <form action='#' method='post'>
+        <p style="font-weight: bold;font-size: 0.9em">Query the table "translations" (MySQL)</p>
+
+        <p> <textarea style="width: 50%" name='query' rows='5'>SELECT * FROM translations;</textarea> </p>
+
+        <p><input type='submit' name='submit' value='Query' /></p>
+
+        {% if result %}
+            <p style="font-style: italic;font-size: 0.9em">Result:</p>
+            <p> {% autoescape off %} {{ result }} {% endautoescape %} </p>
+        {% endif %}
+    </form>
+
+    <p><a href="{{ url_for('home') }}"><button class=grey>Home</button></a></p>
+
+</html>
