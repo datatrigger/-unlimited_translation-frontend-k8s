@@ -24,7 +24,7 @@ def home():
         text_de = request.form['text']
         headers = {'accept': 'application/json'}
         json_data = {'text_de': text_de}
-        text_en = requests.post('http://backend-fastapi-pod/translate', headers=headers, json=json_data).json()['text_en']
+        text_en = requests.post('http://backend-fastapi-service/translate', headers=headers, json=json_data).json()['text_en']
 
         # if text_de:
         #     try:
