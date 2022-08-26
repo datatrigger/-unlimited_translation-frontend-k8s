@@ -50,8 +50,7 @@ def home():
 @app.route('/query_db', methods=['POST', 'GET'])
 def query_db():
 
-    return render_template('query_db.html', result = None)
-
+    # return render_template('query_db.html', result = None)
 
     if request.method == 'POST':
         query = request.form['query']
