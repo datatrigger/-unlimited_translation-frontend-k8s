@@ -31,7 +31,7 @@ def home():
 
         if text_de:
             try:
-                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-headless', database='translation')
+                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-0.mysql-headless', database='translation')
                 cursor = cnx.cursor()
                 text_de_sql = text_de.replace("\'", "\\\'")
                 text_en_sql = text_en.replace("\'", "\\\'")
@@ -57,7 +57,7 @@ def query_db():
         query = request.form['query']
 
         try:
-            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-headless', database='translation')
+            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-read', database='translation')
             cursor = cnx.cursor()
             cursor.execute(query)
             result = pd.DataFrame(data = cursor.fetchall(), columns = cursor.column_names).to_html(index=False)
