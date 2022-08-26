@@ -31,7 +31,7 @@ def home():
 
         if text_de:
             try:
-                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-stateful-0', database='translation')
+                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-stateful-0.mysql-headless.default.svc.cluster.local', database='translation')
                 cursor = cnx.cursor()
                 text_de_sql = text_de.replace("\'", "\\\'")
                 text_en_sql = text_en.replace("\'", "\\\'")
