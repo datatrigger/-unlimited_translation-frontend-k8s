@@ -4,19 +4,9 @@ import requests
 import pandas as pd
 import os
 
-# # Fetch credentials for the MySQL database
-# def get_secret(key):
-#     '''Retrieve Docker secrets'''
-#     path= os.environ[key]
-#     with open(path) as file:
-#             value = file.read()
-#     return value
-
-# db_user = get_secret('FLASK_DB_USER_FILE')
-# db_password = get_secret('FLASK_DB_PASSWORD_FILE')
-
-db_user = "frontend"
-db_password = "password"
+db_user = os.environ.get('DB_USER')
+db_password = os.environ.get('DB_PASSWORD')
+db_name = os.environ.get('DB_NAME')
 
 # Init Flask app
 app = Flask(__name__)
@@ -31,7 +21,7 @@ def home():
 
         if text_de:
             try:
-                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-stateful-0.mysql-headless.default.svc.cluster.local', database='translation')
+                cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-stateful-0.mysql-headless.default.svc.cluster.local', database=db_name)
                 cursor = cnx.cursor()
                 text_de_sql = text_de.replace("\'", "\\\'")
                 text_en_sql = text_en.replace("\'", "\\\'")
@@ -50,13 +40,11 @@ def home():
 @app.route('/query_db', methods=['POST', 'GET'])
 def query_db():
 
-    # return render_template('query_db.html', result = None)
-
     if request.method == 'POST':
         query = request.form['query']
 
         try:
-            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-read', database='translation')
+            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-read', database=db_name)
             cursor = cnx.cursor()
             cursor.execute(query)
             result = pd.DataFrame(data = cursor.fetchall(), columns = cursor.column_names).to_html(index=False)
