@@ -45,7 +45,7 @@ def query_db():
         query = request.form['query']
 
         try:
-            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-read', database=db_name)
+            cnx = mysql.connector.connect(user=db_user, password=db_password, host='mysql-stateful-0.mysql-headless', database=db_name)
             cursor = cnx.cursor()
             cursor.execute(query)
             result = pd.DataFrame(data = cursor.fetchall(), columns = cursor.column_names).to_html(index=False)
