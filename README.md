@@ -1,1 +1,1 @@
-# -unlimited_translation-frontend-k8s
+This is the frontend microservice of my [translation app](https://translation.datatrigger.org) (to deploy on a Kubernetes cluster, [this one](https://github.com/datatrigger/unlimited_translation-frontend-swarm) is used for deploying with Docker Compose).
